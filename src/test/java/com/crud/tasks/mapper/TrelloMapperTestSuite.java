@@ -1,6 +1,7 @@
 package com.crud.tasks.mapper;
 
 import com.crud.tasks.domain.*;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -43,7 +44,10 @@ class TrelloMapperTestSuite {
         //Then
         assertEquals(trelloBoardDtos.size(), resultTrelloBoards.size());
         assertEquals("01", resultTrelloBoards.get(0).getName());
+        assertNotNull(resultTrelloBoards.get(0).getLists());
         assertEquals("2", resultTrelloBoards.get(1).getId());
+        assertEquals("1", resultTrelloBoards.get(0).getLists().get(0).getId());
+        assertEquals("Done", resultTrelloBoards.get(1).getLists().get(1).getName());
         assertTrue(resultTrelloBoards.get(2).getLists().get(0).isClosed());
     }
 
@@ -74,21 +78,15 @@ class TrelloMapperTestSuite {
     }
 
     @Test
-    public void mapToListTest() {
+    public void mapToEmptyListTest() {
         //Given
-        TrelloListDto trelloListDto1 = new TrelloListDto("1", "ToDo", true);
-        TrelloListDto trelloListDto2 = new TrelloListDto("2", "Done", false);
         List<TrelloListDto> trelloListDtos = new ArrayList<>();
-        trelloListDtos.add(trelloListDto1);
-        trelloListDtos.add(trelloListDto2);
         //When
         List<TrelloList> resultTrelloLists = trelloMapper.mapToList(trelloListDtos);
         //Then
+        assertNotNull(resultTrelloLists);
+        Assert.assertEquals(0, resultTrelloLists.size());
         assertEquals(trelloListDtos.size(), resultTrelloLists.size());
-        assertEquals("1", resultTrelloLists.get(0).getId());
-        assertEquals("Done", resultTrelloLists.get(1).getName());
-        assertTrue(resultTrelloLists.get(0).isClosed());
-        assertFalse(resultTrelloLists.get(1).isClosed());
     }
 
     @Test
