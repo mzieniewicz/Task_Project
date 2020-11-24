@@ -28,12 +28,12 @@ public class TrelloController {
 //                .filter(trelloBoardDto->trelloBoardDto.getName().contains("Kodilla"))
 //                .forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
 
-    @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
+    @RequestMapping(method = RequestMethod.GET, value = "/boards")
     public List<TrelloBoardDto> getTrelloBoards() {
         return trelloFacade.fetchTrelloBoards();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
+    @RequestMapping(method = RequestMethod.POST, value = "/cards")
     public CreatedTrelloCardDto createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
         return trelloFacade.createCard(trelloCardDto);
     }

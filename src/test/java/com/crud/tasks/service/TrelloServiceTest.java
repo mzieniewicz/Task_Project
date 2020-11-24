@@ -44,8 +44,8 @@ public class TrelloServiceTest {
         assertEquals(1, trelloBoardDtos.size());
 
         trelloBoardDtos.forEach(trelloBoardDto -> {
-            assertEquals("my_task", trelloBoardDto.getId());
-            assertEquals("1", trelloBoardDto.getName());
+            assertEquals("1", trelloBoardDto.getId());
+            assertEquals("my_task", trelloBoardDto.getName());
 
             trelloBoardDto.getLists().forEach(trelloListDto -> {
                 assertEquals("001", trelloListDto.getId());

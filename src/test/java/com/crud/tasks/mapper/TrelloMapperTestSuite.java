@@ -43,9 +43,9 @@ class TrelloMapperTestSuite {
         List<TrelloBoard> resultTrelloBoards = trelloMapper.mapToBoards(trelloBoardDtos);
         //Then
         assertEquals(trelloBoardDtos.size(), resultTrelloBoards.size());
-        assertEquals("01", resultTrelloBoards.get(0).getName());
+        assertEquals("01", resultTrelloBoards.get(0).getId());
         assertNotNull(resultTrelloBoards.get(0).getLists());
-        assertEquals("2", resultTrelloBoards.get(1).getId());
+        assertEquals("2", resultTrelloBoards.get(1).getName());
         assertEquals("1", resultTrelloBoards.get(0).getLists().get(0).getId());
         assertEquals("Done", resultTrelloBoards.get(1).getLists().get(1).getName());
         assertTrue(resultTrelloBoards.get(2).getLists().get(0).isClosed());
@@ -60,9 +60,9 @@ class TrelloMapperTestSuite {
         trelloLists.add(trelloList1);
         trelloLists.add(trelloList2);
 
-        TrelloBoard trelloBoard1 = new TrelloBoard("name1", "1", trelloLists);
-        TrelloBoard trelloBoard2 = new TrelloBoard("name2", "22", trelloLists);
-        TrelloBoard trelloBoard3 = new TrelloBoard("name3", "33", trelloLists);
+        TrelloBoard trelloBoard1 = new TrelloBoard("1", "name1", trelloLists);
+        TrelloBoard trelloBoard2 = new TrelloBoard("22", "name2", trelloLists);
+        TrelloBoard trelloBoard3 = new TrelloBoard("33", "name3", trelloLists);
 
         List<TrelloBoard> trelloBoards = new ArrayList<>();
         trelloBoards.add(trelloBoard1);

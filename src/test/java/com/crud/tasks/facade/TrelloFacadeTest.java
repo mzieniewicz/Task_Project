@@ -86,8 +86,8 @@ public class TrelloFacadeTest {
         assertEquals(1, trelloBoardDtos.size());
 
         trelloBoardDtos.forEach(trelloBoardDto -> {
-            assertEquals("my_task", trelloBoardDto.getId());
-            assertEquals("1", trelloBoardDto.getName());
+            assertEquals("my_task", trelloBoardDto.getName());
+            assertEquals("1", trelloBoardDto.getId());
 
             trelloBoardDto.getLists().forEach(trelloListDto -> {
                 assertEquals("1", trelloListDto.getId());
